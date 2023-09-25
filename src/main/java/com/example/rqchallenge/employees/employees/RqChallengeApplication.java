@@ -1,4 +1,4 @@
-package com.example.rqchallenge;
+package com.example.rqchallenge.employees.employees;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

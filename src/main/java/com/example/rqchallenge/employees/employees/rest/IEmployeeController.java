@@ -1,5 +1,6 @@
-package com.example.rqchallenge.employees;
+package com.example.rqchallenge.employees.employees.rest;
 
+import com.example.rqchallenge.employees.employees.rest.response.EmployeeResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,13 +12,13 @@ import java.util.Map;
 public interface IEmployeeController {
 
     @GetMapping()
-    ResponseEntity<List<Employee>> getAllEmployees() throws IOException;
+    ResponseEntity<List<EmployeeResponse>> getAllEmployees() throws IOException;
 
     @GetMapping("/search/{searchString}")
-    ResponseEntity<List<Employee>> getEmployeesByNameSearch(@PathVariable String searchString);
+    ResponseEntity<List<EmployeeResponse>> getEmployeesByNameSearch(@PathVariable String searchString);
 
     @GetMapping("/{id}")
-    ResponseEntity<Employee> getEmployeeById(@PathVariable String id);
+    ResponseEntity<EmployeeResponse> getEmployeeById(@PathVariable String id);
 
     @GetMapping("/highestSalary")
     ResponseEntity<Integer> getHighestSalaryOfEmployees();
@@ -26,7 +27,7 @@ public interface IEmployeeController {
     ResponseEntity<List<String>> getTopTenHighestEarningEmployeeNames();
 
     @PostMapping()
-    ResponseEntity<Employee> createEmployee(@RequestBody Map<String, Object> employeeInput);
+    ResponseEntity<EmployeeResponse> createEmployee(@RequestBody Map<String, Object> employeeInput);
 
     @DeleteMapping("/{id}")
     ResponseEntity<String> deleteEmployeeById(@PathVariable String id);
