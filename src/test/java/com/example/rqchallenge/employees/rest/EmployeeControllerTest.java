@@ -1,4 +1,6 @@
 package com.example.rqchallenge.employees.rest;
 
-public class EmployeeControllerTest {
+import com.example.rqchallenge.employees.test.ControllerIntegrationTest;
+
+class EmployeeControllerTest extends ControllerIntegrationTest {
 }
