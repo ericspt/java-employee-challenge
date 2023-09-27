@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.rqchallenge.employees.service.EmployeeServiceTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2023-09-27T20:31:52" hostname="ERIC-PC" time="0.932">
+  <properties/>
+  <testcase name="itThrowsWhenItGetsAllEmployees()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.83"/>
+  <testcase name="itGetsAllEmployees()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.06"/>
+  <testcase name="itThrowsWhenItCannotGetEmployee()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.01"/>
+  <testcase name="itThrowsWhenItGetsHighestEarningEmployeesSalaryIfThereAreNoEmployees()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.008"/>
+  <testcase name="itGetsHighestEarningEmployeesSalary()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.003"/>
+  <testcase name="itGetsHighestEarningEmployeesNames()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.003"/>
+  <testcase name="itGetsHighestEarningEmployeesNamesWhenThereAreNotEnoughEmployees()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.002"/>
+  <testcase name="itThrowsWhenItGetsEmployeesBySearchQuery()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.003"/>
+  <testcase name="itThrowsWhenHighestEarningEmployeesIsCalledWithNoEmployees()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.002"/>
+  <testcase name="itGetsEmployeesBySearchQuery()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.002"/>
+  <testcase name="itGetsEmployeeById()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.002"/>
+  <system-out><![CDATA[21:31:53.542 [Test worker] ERROR com.example.rqchallenge.employees.service.EmployeeService - No employees found.
+null
+21:31:53.590 [Test worker] DEBUG reactor.util.Loggers - Using Slf4j logging framework
+21:31:53.628 [Test worker] ERROR com.example.rqchallenge.employees.service.EmployeeService - Employee with id 2 not found.
+null
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

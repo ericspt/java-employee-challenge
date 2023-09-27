@@ -1,9 +1,7 @@
 package com.example.rqchallenge.employees.test;
 
-import com.example.rqchallenge.employees.employees.RqChallengeApplication;
+import com.example.rqchallenge.employees.RqChallengeApplication;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.lang.annotation.*;
 

@@ -1,7 +1,7 @@
-package com.example.rqchallenge.employees.employees.domain;
+package com.example.rqchallenge.employees.domain;
 
 public record Employee(Long id,
                        String name,
-                       Long salary,
+                       Integer salary,
                        Integer age,
                        String profileImage) { }
