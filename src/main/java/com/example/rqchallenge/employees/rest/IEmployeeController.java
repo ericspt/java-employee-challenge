@@ -27,9 +27,9 @@ public interface IEmployeeController {
     ResponseEntity<Mono<List<String>>> getTopTenHighestEarningEmployeeNames();
 
     @PostMapping()
-    ResponseEntity<EmployeeResponse> createEmployee(@RequestBody Map<String, Object> employeeInput);
+    ResponseEntity<Mono<EmployeeResponse>> createEmployee(@RequestBody Map<String, Object> employeeInput);
 
     @DeleteMapping("/{id}")
-    ResponseEntity<String> deleteEmployeeById(@PathVariable String id);
+    ResponseEntity<Mono<String>> deleteEmployeeById(@PathVariable String id);
 
 }

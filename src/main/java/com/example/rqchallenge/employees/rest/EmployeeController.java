@@ -2,6 +2,7 @@ package com.example.rqchallenge.employees.rest;
 
 import com.example.rqchallenge.employees.exception.NoEmployeesFoundException;
 import com.example.rqchallenge.employees.rest.mapper.EmployeeMapper;
+import com.example.rqchallenge.employees.rest.request.CreateEmployeeRequest;
 import com.example.rqchallenge.employees.rest.response.EmployeeResponse;
 import com.example.rqchallenge.employees.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
@@ -24,65 +25,73 @@ public class EmployeeController implements IEmployeeController {
 
     @Override
     public ResponseEntity<Mono<List<EmployeeResponse>>> getAllEmployees() {
-          try {
-              return new ResponseEntity<>(mapper.getEmployeesResponseFrom(service.getAllEmployees()), HttpStatus.OK);
-          } catch (Exception e) {
-              return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-          }
+          var employees = service.getAllEmployees();
+          var response = mapper.getEmployeesResponseFrom(employees);
+          return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Mono<List<EmployeeResponse>>> getEmployeesByNameSearch(String searchString) {
-        try {
-            return new ResponseEntity<>(
-                    mapper.getEmployeesResponseFrom(service.searchEmployeesBy(searchString)),
-                    HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        var employees = service.searchEmployeesBy(searchString);
+        var response = mapper.getEmployeesResponseFrom(employees);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Mono<EmployeeResponse>> getEmployeeById(String id) {
         try {
-            long employeeId = Long.parseLong(id);
-            return new ResponseEntity<>(mapper.getEmployeeResponseFrom(service.getEmployee(employeeId)), HttpStatus.OK);
+            Long.parseLong(id);
         } catch (NumberFormatException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        var employee = service.getEmployee(Long.parseLong(id));
+        var response = mapper.getEmployeeResponseFrom(employee);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<Mono<Integer>> getHighestSalaryOfEmployees() {
         try {
-            return new ResponseEntity<>(service.getHighestSalaryOfEmployees(), HttpStatus.OK);
+            var response = service.getHighestSalaryOfEmployees();
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (NoEmployeesFoundException e) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @Override
     public ResponseEntity<Mono<List<String>>> getTopTenHighestEarningEmployeeNames() {
         try {
-            return new ResponseEntity<>(service.getTopTenHighestEarningEmployeeNames(), HttpStatus.OK);
+            var response = service.getTopTenHighestEarningEmployeeNames();
+            return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (NoEmployeesFoundException e) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @Override
-    public ResponseEntity<EmployeeResponse> createEmployee(Map<String, Object> employeeInput) {
-        return null;
+    public ResponseEntity<Mono<EmployeeResponse>> createEmployee(Map<String, Object> employeeInput) {
+        try {
+            CreateEmployeeRequest request = new CreateEmployeeRequest(employeeInput);
+            if (!request.isValid()) {
+                throw new RuntimeException();
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        var employee = service.createEmployee(employeeInput);
+        var response = mapper.getEmployeeResponseFrom(employee);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<String> deleteEmployeeById(String id) {
-        return null;
+    public ResponseEntity<Mono<String>> deleteEmployeeById(String id) {
+        try {
+            Long.parseLong(id);
+        } catch (NumberFormatException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        var response = service.deleteEmployee(Long.parseLong(id));
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

@@ -1,22 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.rqchallenge.employees.service.EmployeeServiceTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2023-09-27T20:31:52" hostname="ERIC-PC" time="0.932">
+<testsuite name="com.example.rqchallenge.employees.service.EmployeeServiceTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2023-09-28T01:35:57" hostname="ERIC-PC" time="0.107">
   <properties/>
-  <testcase name="itThrowsWhenItGetsAllEmployees()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.83"/>
-  <testcase name="itGetsAllEmployees()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.06"/>
-  <testcase name="itThrowsWhenItCannotGetEmployee()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.01"/>
-  <testcase name="itThrowsWhenItGetsHighestEarningEmployeesSalaryIfThereAreNoEmployees()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.008"/>
+  <testcase name="itThrowsWhenItGetsAllEmployees()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.078"/>
+  <testcase name="itGetsAllEmployees()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.002"/>
+  <testcase name="itThrowsWhenItCannotGetEmployee()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.003"/>
+  <testcase name="itDeletesEmployee()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.001"/>
+  <testcase name="itThrowsWhenItGetsHighestEarningEmployeesSalaryIfThereAreNoEmployees()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.005"/>
   <testcase name="itGetsHighestEarningEmployeesSalary()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.003"/>
-  <testcase name="itGetsHighestEarningEmployeesNames()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.003"/>
+  <testcase name="itGetsHighestEarningEmployeesNames()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.002"/>
   <testcase name="itGetsHighestEarningEmployeesNamesWhenThereAreNotEnoughEmployees()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.002"/>
-  <testcase name="itThrowsWhenItGetsEmployeesBySearchQuery()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.003"/>
+  <testcase name="itThrowsWhenItGetsEmployeesBySearchQuery()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.002"/>
   <testcase name="itThrowsWhenHighestEarningEmployeesIsCalledWithNoEmployees()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.002"/>
-  <testcase name="itGetsEmployeesBySearchQuery()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.002"/>
-  <testcase name="itGetsEmployeeById()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.002"/>
-  <system-out><![CDATA[21:31:53.542 [Test worker] ERROR com.example.rqchallenge.employees.service.EmployeeService - No employees found.
-null
-21:31:53.590 [Test worker] DEBUG reactor.util.Loggers - Using Slf4j logging framework
-21:31:53.628 [Test worker] ERROR com.example.rqchallenge.employees.service.EmployeeService - Employee with id 2 not found.
-null
+  <testcase name="itGetsEmployeesBySearchQuery()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.001"/>
+  <testcase name="itGetsEmployeeById()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.001"/>
+  <testcase name="itCreatesNewEmployee()" classname="com.example.rqchallenge.employees.service.EmployeeServiceTest" time="0.002"/>
+  <system-out><![CDATA[2023-09-28 02:35:57.199  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.199 ERROR 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : No employees found.
+2023-09-28 02:35:57.200  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.205  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching employee for id 2
+2023-09-28 02:35:57.205 ERROR 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Employee with id 2 not found.
+2023-09-28 02:35:57.207  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Deleting employee with id 3
+2023-09-28 02:35:57.208  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching highest salary of employees...
+2023-09-28 02:35:57.209  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.214  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching highest salary of employees...
+2023-09-28 02:35:57.214  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.216  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching top ten highest earning employees names...
+2023-09-28 02:35:57.216  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.219  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching top ten highest earning employees names...
+2023-09-28 02:35:57.219  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.220  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Searching employees with query se
+2023-09-28 02:35:57.221  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.222  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching top ten highest earning employees names...
+2023-09-28 02:35:57.222  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.225  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Searching employees with query bo
+2023-09-28 02:35:57.225  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.226  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching employee for id 1
+2023-09-28 02:35:57.227  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Creating new employee with data {salary=123, age=11, name=bob}
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

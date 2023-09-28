@@ -11,6 +11,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -22,9 +23,10 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public Mono<List<Employee>> getAllEmployees() throws NoEmployeesFoundException {
         try {
+            log.info("Fetching all employees...");
             return getNonEmptyEmployeeList(employeeClient.getAllEmployees());
         } catch (NoEmployeesFoundException e) {
-            log.error("No employees found.\n" + e.getMessage());
+            log.error("No employees found.");
             throw e;
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -35,9 +37,10 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public Mono<Employee> getEmployee(long id) throws EmployeeNotFoundException {
         try {
+            log.info("Fetching employee for id " + id);
             return employeeClient.getEmployee(id);
         } catch (EmployeeNotFoundException e) {
-            log.error("Employee with id " + id + " not found.\n" + e.getMessage());
+            log.error("Employee with id " + id + " not found.");
             throw e;
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -48,12 +51,13 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public Mono<List<Employee>> searchEmployeesBy(String nameQuery) throws NoEmployeesFoundException {
         try {
+            log.info("Searching employees with query " + nameQuery);
             var allEmployees = getAllEmployees();
             return getNonEmptyEmployeeList(allEmployees.map(employeeList -> employeeList.stream()
                     .filter(employee -> employee.name().toLowerCase().contains(nameQuery.toLowerCase()))
                     .toList()));
         } catch (NoEmployeesFoundException e) {
-            log.error("No employees found for search query " + nameQuery + ".\n" + e.getMessage());
+            log.error("No employees found for search query " + nameQuery);
             throw e;
         } catch (Exception e) {
             log.error(e.getMessage());
@@ -63,12 +67,14 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public Mono<Integer> getHighestSalaryOfEmployees() throws NoEmployeesFoundException {
+        log.info("Fetching highest salary of employees...");
         return getHighestEarningEmployees(1)
                 .map(employeeList -> employeeList.get(0).salary());
     }
 
     @Override
     public Mono<List<String>> getTopTenHighestEarningEmployeeNames() throws NoEmployeesFoundException {
+        log.info("Fetching top ten highest earning employees names...");
         return getHighestEarningEmployees(10)
                 .map(employeeList -> employeeList
                         .stream()
@@ -76,14 +82,36 @@ public class EmployeeService implements IEmployeeService {
                         .toList());
     }
 
+    @Override
+    public Mono<Employee> createEmployee(Map<String, Object> employeeData) {
+        try {
+            log.info("Creating new employee with data {}", employeeData);
+            return employeeClient.createEmployee(employeeData);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw e;
+        }
+    }
+
+    @Override
+    public Mono<String> deleteEmployee(Long id) {
+        try {
+            log.info("Deleting employee with id " + id);
+            return employeeClient.deleteEmployee(id);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw e;
+        }
+    }
+
     private Mono<List<Employee>> getHighestEarningEmployees(int limit) throws NoEmployeesFoundException {
         var allEmployees = getAllEmployees();
-        return getNonEmptyEmployeeList(allEmployees.map(employeeList -> employeeList
+        return allEmployees.map(employeeList -> employeeList
                 .stream()
                 .sorted(Comparator.comparingInt(Employee::salary)
                         .reversed())
                 .limit(limit)
-                .toList()));
+                .toList());
     }
 
     private Mono<List<Employee>> getNonEmptyEmployeeList(Mono<List<Employee>> employeeList) throws NoEmployeesFoundException {

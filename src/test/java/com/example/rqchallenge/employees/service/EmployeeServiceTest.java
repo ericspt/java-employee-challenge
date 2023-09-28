@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.Map;
 
 @ExtendWith(MockitoExtension.class)
 public class EmployeeServiceTest {
@@ -146,6 +147,29 @@ public class EmployeeServiceTest {
 
         val result = employeeService.getTopTenHighestEarningEmployeeNames();
         val expected = List.of("bob10", "bob9", "bob8", "bob7", "bob6", "bob5", "bob4", "bob3", "bob2", "bob1");
+
+        Assertions.assertEquals(result.block(), expected);
+    }
+
+    @Test
+    void itCreatesNewEmployee() {
+        Map<String, Object> employeeData = Map.of("name", "bob", "salary", "123", "age", "11");
+
+        Mockito.when(employeeClient.createEmployee(employeeData))
+                .thenReturn(Mono.just(new Employee(1L, "bob", 123, 11, "")));
+
+        val result = employeeService.createEmployee(employeeData);
+        val expected = new Employee(1L, "bob", 123, 11, "");
+
+        Assertions.assertEquals(result.block(), expected);
+    }
+
+    @Test
+    void itDeletesEmployee() {
+        Mockito.when(employeeClient.deleteEmployee(3L)).thenReturn(Mono.just("success"));
+
+        val result = employeeService.deleteEmployee(3L);
+        val expected = "success";
 
         Assertions.assertEquals(result.block(), expected);
     }

@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">11</div>
+<div class="counter">13</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.925s</div>
+<div class="counter">0.104s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,23 +78,33 @@
 </tr>
 </thead>
 <tr>
+<td class="success">itCreatesNewEmployee()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">itDeletesEmployee()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">itGetsAllEmployees()</td>
-<td class="success">0.060s</td>
+<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">itGetsEmployeeById()</td>
-<td class="success">0.002s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">itGetsEmployeesBySearchQuery()</td>
-<td class="success">0.002s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">itGetsHighestEarningEmployeesNames()</td>
-<td class="success">0.003s</td>
+<td class="success">0.002s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -114,22 +124,22 @@
 </tr>
 <tr>
 <td class="success">itThrowsWhenItCannotGetEmployee()</td>
-<td class="success">0.010s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">itThrowsWhenItGetsAllEmployees()</td>
-<td class="success">0.830s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">itThrowsWhenItGetsEmployeesBySearchQuery()</td>
 <td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
+<td class="success">itThrowsWhenItGetsAllEmployees()</td>
+<td class="success">0.078s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">itThrowsWhenItGetsEmployeesBySearchQuery()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
 <td class="success">itThrowsWhenItGetsHighestEarningEmployeesSalaryIfThereAreNoEmployees()</td>
-<td class="success">0.008s</td>
+<td class="success">0.005s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -137,11 +147,28 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>21:31:53.542 [Test worker] ERROR com.example.rqchallenge.employees.service.EmployeeService - No employees found.
-null
-21:31:53.590 [Test worker] DEBUG reactor.util.Loggers - Using Slf4j logging framework
-21:31:53.628 [Test worker] ERROR com.example.rqchallenge.employees.service.EmployeeService - Employee with id 2 not found.
-null
+<pre>2023-09-28 02:35:57.199  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.199 ERROR 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : No employees found.
+2023-09-28 02:35:57.200  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.205  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching employee for id 2
+2023-09-28 02:35:57.205 ERROR 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Employee with id 2 not found.
+2023-09-28 02:35:57.207  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Deleting employee with id 3
+2023-09-28 02:35:57.208  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching highest salary of employees...
+2023-09-28 02:35:57.209  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.214  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching highest salary of employees...
+2023-09-28 02:35:57.214  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.216  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching top ten highest earning employees names...
+2023-09-28 02:35:57.216  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.219  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching top ten highest earning employees names...
+2023-09-28 02:35:57.219  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.220  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Searching employees with query se
+2023-09-28 02:35:57.221  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.222  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching top ten highest earning employees names...
+2023-09-28 02:35:57.222  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.225  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Searching employees with query bo
+2023-09-28 02:35:57.225  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching all employees...
+2023-09-28 02:35:57.226  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Fetching employee for id 1
+2023-09-28 02:35:57.227  INFO 21440 --- [    Test worker] c.e.r.employees.service.EmployeeService  : Creating new employee with data {salary=123, age=11, name=bob}
 </pre>
 </span>
 </div>
@@ -153,7 +180,7 @@ null
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.3.1</a> at Sep 27, 2023, 9:31:53 PM</p>
+<a href="http://www.gradle.org">Gradle 7.3.1</a> at Sep 28, 2023, 2:35:59 AM</p>
 </div>
 </div>
 </body>
