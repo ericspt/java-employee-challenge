@@ -10,7 +10,7 @@ It exposes a number of endpoints that proxy over to the external dummy API.
 This reactive application obeys basic DDD principles. The application has:
 - a presentational layer, represented by the
 [IEmployeeController.java](src/main/java/com/example/rqchallenge/employees/rest/IEmployeeController.java) file, where
-available endpoints are also shown and a 
+available endpoints are also shown, and a 
 [mapper](src/main/java/com/example/rqchallenge/employees/rest/mapper/EmployeeMapper.java)
 - a domain layer, represented by the [Employee](src/main/java/com/example/rqchallenge/employees/domain/Employee.java)
 record, as well as the service hosting business logic i.e. 
