@@ -1,118 +1,32 @@
-# Coding Challenge
+# Employee Application - Coding Challenge
 
-### In this assessment you will be tasked with filling out the functionality of different methods that will be listed further down.
-These methods will require some level of api interactions with the following base url: https://dummy.restapiexample.com.
-Please keep the following in mind when doing this assessment: clean coding practices, test driven development, logging, and scalability.
-If you are unable to successfully receive responses from the endpoints, mocking the response calls may prove to be helpful.
+## Context
+This is a Spring Boot Web reactive application. It calls a [dummy API](https://dummy.restapiexample.com/) to fetch,
+add and delete employee data.
 
-### Endpoints to implement
+It exposes a number of endpoints that proxy over to the external dummy API.
 
-getAllEmployees()
+## Layers
+This reactive application obeys basic DDD principles. The application has:
+- a presentational layer, represented by the
+[IEmployeeController.java](src/main/java/com/example/rqchallenge/employees/rest/IEmployeeController.java) file, where
+available endpoints are also shown and a 
+[mapper](src/main/java/com/example/rqchallenge/employees/rest/mapper/EmployeeMapper.java)
+- a domain layer, represented by the [Employee](src/main/java/com/example/rqchallenge/employees/domain/Employee.java)
+record, as well as the service hosting business logic i.e. 
+[EmployeeService](src/main/java/com/example/rqchallenge/employees/service/EmployeeService.java)
+- a network layer, connecting the dummy API to our application, represented by the
+[EmployeeClient](src/main/java/com/example/rqchallenge/employees/client/EmployeeClient.java)
 
-    output - list of employees
-    description - this should return all employees
+## Testing
+For testing:
+- `WebTestClient` is used for controller integration tests, each time with a different port
+- `Mockito` is used to Mock different classes, as well as to inject those into the classes undergoing testing
 
-getEmployeesByNameSearch()
+## Logging
+In this project, the `@Slf4j` API is being used, aiming for readability and simplicity. Logging may be improved by
+creating a custom logger that acts as a wrapper around this API and introduces smarter, more hidden logging.
 
-    output - list of employees
-    description - this should return all employees whose name contains or matches the string input provided
-
-getEmployeeById(string id)
-
-    output - employee
-    description - this should return a single employee
-
-getHighestSalaryOfEmployees()
-
-    output - integer of the highest salary
-    description -  this should return a single integer indicating the highest salary of all employees
-
-getTop10HighestEarningEmployeeNames()
-
-    output - list of employees
-    description -  this should return a list of the top 10 employees based off of their salaries
-
-createEmployee(string name, string salary, string age)
-
-    output - string of the status (i.e. success)
-    description -  this should return a status of success or failed based on if an employee was created
-
-deleteEmployee(String id)
-
-    output - the name of the employee that was deleted
-    description - this should delete the employee with specified id given
-
-### External endpoints from base url
-#### This section will outline all available endpoints and their request and response models from https://dummy.restapiexample.com
-/employees
-
-    request:
-        method: GET
-        parameters: n/a
-        full route: https://dummy.restapiexample.com/api/v1/employees
-    response:
-        {
-            "status": "success",
-            "data": [
-                {
-                "id": "1",
-                "employee_name": "Tiger Nixon",
-                "employee_salary": "320800",
-                "employee_age": "61",
-                "profile_image": ""
-                },
-                ....
-            ]
-        }
-
-/employee/{id}
-
-    request:
-        method: GET
-        parameters: 
-            id (String)
-        full route: https://dummy.restapiexample.com/api/v1/employee/{id}
-    response: 
-        {
-            "status": "success",
-            "data": {
-                "id": "1",
-                "employee_name": "Foo Bar",
-                "employee_salary": "320800",
-                "employee_age": "61",
-                "profile_image": ""
-            }
-        }
-
-/create
-
-    request:
-        method: POST
-        parameters: 
-            name (String),
-            salary (String),
-            age (String)
-        full route: https://dummy.restapiexample.com/api/v1/create
-    response:
-        {
-            "status": "success",
-            "data": {
-                "name": "test",
-                "salary": "123",
-                "age": "23",
-                "id": 25
-            }
-        }
-
-/delete/{id}
-
-    request:
-        method: DELETE
-        parameters:
-            id (String)
-        full route: https://dummy.restapiexample.com/api/v1/delete/{id}
-    response:
-        {
-            "status": "success",
-            "message": "successfully! deleted Record"
-        }
+## Exception Handling
+Domain layer exceptions are defined in [here](src/main/java/com/example/rqchallenge/employees/exception). These are
+thrown, logged and passed further to the controller that picks them up and passes the status further.
